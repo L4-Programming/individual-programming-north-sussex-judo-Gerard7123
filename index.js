@@ -1,3 +1,19 @@
 /* Refer to the README.md for instructions on what you need to do in this project */
+export function calculateCosts(data){
 
-alert("Hello, World!");
+console.log ("Calculating costs")
+console.log ({data});
+
+const costPerHour ={
+  "Beginner( 2 sessions/week)": 15,
+  "Intermediate( 3 sessions/week)": 30,
+  "Elite( 5 sessions/week)": 35,
+  "private Tuition (1 session/hour)": 9.50, 
+  "Competition fee": 22.00
+}; 
+  let totalCost = 0;
+
+  if (data.costPerHour) {
+}
+}
+
