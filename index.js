@@ -1,5 +1,16 @@
-//Captures the form submission and prevents the default action
+import { calculateCosts } from "./calculateCosts.js";
+import { validateForm } from "./validateForm.js/";
+import { displayResults } from "./displayResults.js";
+
 let form = document.querySelector("form");
+
+Event.preventDefault();
+const maxHoursPerLevel = {
+  "Beginner( 2 sessions/week)": 2,
+  "Intermediate( 3 sessions/week)": 3,
+  "Elite( 5 sessions/week)": 5,
+};
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   console.log("Form submitted");
@@ -9,17 +20,5 @@ import { calculateCosts } from "./calculateCosts.js";
 export function calculateCosts(data) {
   console.log("Calculating costs");
   console.log({ data });
-
-  const costPerHour = {
-    "Beginner( 2 sessions/week)": 15,
-    "Intermediate( 3 sessions/week)": 30,
-    "Elite( 5 sessions/week)": 35,
-    "private Tuition (1 session/hour)": 9.5,
-    "Competition fee": 22.0,
-  };
-  let totalCost = 0;
-
-  if (data.costPerHour) {
-  }
-  return totalCost;
+  return 0;
 }
