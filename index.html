@@ -47,7 +47,7 @@
               <label for="elite">Elite - 5 sessions p/wk</label>
             </div>
           </div>
-          <script type="text/javascript" src="index.js"></script>
+          <script type="module" src="index.js"></script>
 
           <div>
             <label for="current-weight">Current Weight (kg)</label>
@@ -85,3 +85,5 @@
     </div>
   </body>
 </html>
+let form = document.querySelector("form"); form.addEventListener("submit",
+function (event) { event.preventDefault(); console.log("Form submitted"); });
