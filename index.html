@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>North Sussex Judo</title>
   </head>
@@ -20,9 +21,11 @@
 
           <div class="training-plan-wrapper" role="radiogroup">
             <label>Training Plan</label>
+
             <div class="radio-button-field">
               <input
                 type="radio"
+                id="beginner"
                 name="training-plan"
                 value="beginner"
                 required
@@ -34,6 +37,7 @@
             <div class="radio-button-field">
               <input
                 type="radio"
+                id="intermediate"
                 name="training-plan"
                 value="intermediate"
                 required
@@ -42,14 +46,33 @@
             </div>
 
             <div class="radio-button-field">
-              <input type="radio" name="training-plan" value="elite" required />
+              <input
+                type="radio"
+                id="advanced"
+                name="training-plan"
+                value="advanced"
+                required
+              />
+              <label for="advanced">Advanced - 4 sessions p/wk</label>
+            </div>
+
+            <div class="radio-button-field">
+              <input
+                type="radio"
+                id="elite"
+                name="training-plan"
+                value="elite"
+                required
+              />
               <label for="elite">Elite - 5 sessions p/wk</label>
             </div>
           </div>
+          <script type="module" src="index.js"></script>
 
           <div>
             <label for="current-weight">Current Weight (kg)</label>
             <input type="number" id="current-weight" name="current-weight" />
+            <displayed-unit>kg</displayed-unit>
           </div>
 
           <div>
@@ -83,3 +106,4 @@
     </div>
   </body>
 </html>
+<script>
