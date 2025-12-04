@@ -16,9 +16,27 @@ form.addEventListener("submit", function (event) {
   console.log("Form submitted");
 }); /* Refer to the README.md for instructions on what you need to do in this project */
 //Import the calculateCosts function from calculateCosts.js
-import { calculateCosts } from "./calculateCosts.js";
-export function calculateCosts(data) {
-  console.log("Calculating costs");
-  console.log({ data });
-  return 0;
+import "./calculateCosts.js";
+console.log("Calculating costs");
+console.log({ data });
+displayResults(calculateCosts);
+//Import the validateForm function from validateForm.js
+import "./validateForm.js";
+console.log("Validating form");
+console.log({ data });
+validateForm(data);
+
+const result = validateForm([
+  userName,
+  userEmail,
+  userLevel,
+  userHours,
+  userTutoring,
+  userCompetitionFee,
+]);
+if (result.length === 0) {
+  const costs = calculateCosts(data);
+  displayResults(costs);
+} else {
+  console.log("Validation errors:", result);
 }

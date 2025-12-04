@@ -2,7 +2,7 @@ export function displayResults(calculateCosts) {
   const resultsContainer = document.querySelector("#results");
   resultsContainer.innerHTML = `
     <h2>Total Cost</h2>
-    <p>Email: ${calculateCosts.userEmail}</p>
+    <p>Name: ${calculateCosts.userName}</p>
     <p>Level: ${calculateCosts.userLevel}</p>
     <p>Hours: ${calculateCosts.userHours}</p>
     <p>Cost: $${calculateCosts.totalCost.toFixed(2)}</p>
