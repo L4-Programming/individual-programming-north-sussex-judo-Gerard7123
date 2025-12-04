@@ -24,10 +24,10 @@
 
             <div class="radio-button-field">
               <input
-                type="radio"
                 id="beginner"
+                type="radio"
                 name="training-plan"
-                value="beginner"
+                level="beginner"
                 required
                 checked
               />
@@ -36,10 +36,10 @@
 
             <div class="radio-button-field">
               <input
-                type="radio"
                 id="intermediate"
+                type="radio"
                 name="training-plan"
-                value="intermediate"
+                level="intermediate"
                 required
               />
               <label for="intermediate">Intermediate - 3 sessions p/wk</label>
@@ -47,10 +47,10 @@
 
             <div class="radio-button-field">
               <input
-                type="radio"
                 id="advanced"
+                type="radio"
                 name="training-plan"
-                value="advanced"
+                level="advanced"
                 required
               />
               <label for="advanced">Advanced - 4 sessions p/wk</label>
@@ -58,16 +58,15 @@
 
             <div class="radio-button-field">
               <input
-                type="radio"
                 id="elite"
+                type="radio"
                 name="training-plan"
-                value="elite"
+                level="elite"
                 required
               />
               <label for="elite">Elite - 5 sessions p/wk</label>
             </div>
           </div>
-          <script type="module" src="index.js"></script>
 
           <div>
             <label for="current-weight">Current Weight (kg)</label>
@@ -76,16 +75,16 @@
           </div>
 
           <div>
-            <label for="competitions-entered"
-              >Number of Competitions Entered this Month (Optional)</label
-            >
+            <label for="competitions-entered">
+              Number of Competitions Entered this Month (Optional)
+            </label>
             <input type="number" name="competitions-entered" />
           </div>
 
           <div>
-            <label for="private-coaching-hours"
-              >Number of Hours of Private Coaching (Optional)</label
-            >
+            <label for="private-coaching-hours">
+              Number of Hours of Private Coaching (Optional)
+            </label>
             <input type="number" name="private-coaching-hours" />
           </div>
 
@@ -104,6 +103,7 @@
         </div>
       </div>
     </div>
+
+    <script type="module" src="index.js"></script>
   </body>
 </html>
-<script>
