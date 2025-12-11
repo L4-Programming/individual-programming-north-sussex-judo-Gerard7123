@@ -1,75 +1,92 @@
+let form = document.querySelector("form");
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+});
 export function validateFormData(data) {
-  const { userEmail, userLevel, userHours } = data;
+  const {
+    userName,
+    userLevel,
+    userHours,
+    userWeight,
+    userCompetitionsEntered,
+  } = data;
+
+  console.log({ data });
+
   const errors = [];
+
+  function addError(message) {
+    errors.push(message);
+  }
+
   if (userLevel === "") {
-    addError("level", "please select your progress level");
+    addError("Please select your progress level");
+
+    return errors;
+  }
+
+  if (!userName) {
+    addError("Athlete Name is required");
+
+    return errors;
+  }
+
+  if (!userLevel) {
+    addError("Training Plan is required");
+
+    return errors;
+  }
+
+  if (!userWeight) {
+    addError("Current Weight is required");
+
+    return errors;
   }
 
   const maxHoursPerLevel = {
-    "Beginner( 2 sessions/week)": 2,
-    "Intermediate( 3 sessions/week)": 3,
-    "Elite( 5 sessions/week)": 5,
+    beginner: 2,
+    intermediate: 3,
+    elite: 5,
   };
-  const maxHoursTutoring = 5;
-  function addError(fieldId, message) {
-    if (fieldId === "tutoring" && maxHoursTutoring >= 5) {
-      errors.push(
-        "You can only have a maximum of 5 hours of tutoring per week."
-      );
-    }
-    errors.push(message);
-    const maxAllowedHours = maxHoursPerLevel[userLevel];
-    if (userHours > maxAllowedHours) {
-      addError(
-        "hoursPerWeek",
-        `You can only study a maximum of ${maxAllowedHours} hours per week.`
-      );
-      if (
-        (userLevel === "Beginner( 2 sessions/week)" && userHours > 2) ||
-        (userLevel === "Intermediate( 3 sessions/week)" && userHours > 3) ||
-        (userLevel === "Elite( 5 sessions/week)" && userHours > 5)
-      ) {
-      } else {
-        errors.push(
-          "Hours per week exceed the maximum allowed for the selected level."
-        );
-      }
+  const maxAllowedHours = maxHoursPerLevel[userLevel];
 
-      if (Object.keys(errors).length > 0) {
-        displayErrors(errors);
+  console.log({ maxAllowedHours });
 
-        return false;
-      }
+  if (userHours > maxAllowedHours) {
+    addError(
+      `You can only study a maximum of ${maxAllowedHours} hours per week.`
+    );
+  }
 
-      return {
-        userEmail,
-        userLevel,
-        userHours: parseInt(userHours),
-      };
+  if (userWeight <= 0) {
+    addError("Current Weight must be a positive number");
+  }
 
-      if (!data.athleteName) {
-        errors.push("Athlete Name is required");
-      }
-      if (!data.trainingPlan) {
-        errors.push("Training Plan is required");
-      }
-      if (!data.currentWeight) {
-        errors.push("Current Weight is required");
-      }
-      if (data.currentWeight <= 0 || data.currentWeight >= 290) {
-        errors.push("Current Weight must be a positive number");
-      }
-      if (data.competitionsEntered < 0 || data.competitionsEntered < 2) {
-        errors.push(
-          "Number of Competitions Entered must be a non-negative number"
-        );
-      }
-      if (data.privateCoachingHours < 0) {
-        errors.push(
-          "Number of Private Coaching Hours must be a non-negative number"
-        );
-      }
-      return errors;
+  if (userWeight > 290) {
+    addError("Current Weight must be less than or equal to 290kg");
+  }
+
+  if (userCompetitionsEntered < 0) {
+    addError("Number of Competitions Entered must be a non-negative number");
+  } else {
+    if (userCompetitionsEntered > 2) {
+      addError("The max number of competitions you can enter is 2");
     }
   }
+
+  if (userHours < 0) {
+    addError("Number of Private Coaching Hours must be a non-negative number");
+  }
+
+  if (errors.length > 0) {
+    return errors;
+  }
+
+  return {
+    userName,
+    userLevel,
+    userHours,
+    userWeight,
+    userCompetitionsEntered,
+  };
 }

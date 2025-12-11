@@ -2,44 +2,68 @@ import { calculateCosts } from "./calculateCosts.js";
 import { validateFormData } from "./validateForms.js";
 import { displayResults } from "./displayResults.js";
 
-let form = document.querySelector("form");
+const form = document.querySelector("form");
 
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-  console.log("Form submitted");
-});
 const maxHoursPerLevel = {
-  "Beginner( 2 sessions/week)": 2,
-  "Intermediate( 3 sessions/week)": 3,
-  "Elite( 5 sessions/week)": 5,
+  beginner: 2,
+  intermediate: 3,
+  advanced: 4,
+  elite: 5,
 };
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-  let userName = document.querySelector("#athlete-name").value;
-  const userLevel = document.querySelector(
-    'input[name="training-plan"]:checked"
-  ).value;
-  let userCompetitionHours = document.querySelector("#competition-entered").value;
 
-  const result = validateFormData({
+  const userName = document.querySelector("#athlete-name").value.trim();
+
+  // get the checked radio (returns null if none)
+  const selected = document.querySelector(
+    'input[name="training-plan"]:checked'
+  );
+
+  const userLevel = selected ? selected.value : "";
+  // lookup hours using the normalized keys (beginner/intermediate/advanced/elite)
+  const userHours =
+    Number(document.querySelector("#private-coaching-hours").value) || 0;
+  const userCompetitionsEntered =
+    Number(document.querySelector("#competitions-entered").value) || 0;
+  const userWeight =
+    Number(document.querySelector("#current-weight").value) || 0;
+
+  const validationErrors = validateFormData({
     userName,
     userLevel,
-    userTutoring,
-    userCompetitionFee: userCompetitionHours,
+    userCompetitionsEntered,
+    userWeight,
+    userHours,
   });
 
-  if (result.length === 0) {
+  if (validationErrors.length > 0) {
+    alert(validationErrors.join("\n"));
+
+    return;
+  }
+
+  if (validationErrors.length === 0) {
+    const data = {
+      userName,
+      userLevel,
+      userHours,
+      userCompetitionHours,
+    };
+
     const costs = calculateCosts(data);
     displayResults(costs);
   } else {
-    console.log("Validation errors:", result);
+    console.log("Validation errors:", validationErrors);
   }
 
+  // helpful debug info in the console
   console.log({
     userName,
     userLevel,
-    userCompetitionFee: userCompetitionHours,
+    userHours,
+    userCompetitionHours,
+    validationErrors,
   });
-}); /* Refer to the README.md for instructions on what you need to do in this project */
-//Import the calculateCosts function from calculateCosts.js
+});

@@ -1,39 +1,40 @@
-export function displayResults(calculateCosts) {
-  const resultsContainer = document.querySelector("#results");
-  resultsContainer.innerHTML = `
-    <h2>Total Cost</h2>
-    <p>Name: ${calculateCosts.userName}</p>
-    <p>Level: ${calculateCosts.userLevel}</p>
-    <p>Hours: ${calculateCosts.userHours}</p>
-    <p>Cost: $${calculateCosts.totalCost.toFixed(2)}</p>
-    <p>Tutoring: ${calculateCosts.userTutoring}</p>
-    <p>CompetitionFee: ${calculateCosts.userCompetitionFee}</p>
+export function displayResults(output) {
+  /* const out = document.querySelector("#output");
+  let results = document.querySelector("#"); */
+  console.log({ output });
+
+  document.getElementById("output").innerHTML = `
+    <dl>
+      <dt>Athlete Name:</dt>
+      <dd>${output.userName || "—"}</dd>
+      <dt>Training Level:</dt>
+      <dd>${output.userLevel || "—"}</dd>
+      <dt>Training Hours per Week:</dt>
+      <dd>${output.userHours ?? "—"}</dd>
+      <dt>Total Cost:</dt>
+      <dd>£${Number(output.totalCost).toFixed(2)}</dd>
+      <dt>Private Tutoring Cost:</dt>
+      <dd>£${Number(output.tutoringCost).toFixed(2)}</dd>
+      <dt>Competition Fees:</dt>
+      <dd>£${Number(output.competitionFee).toFixed(2)}</dd>
+    </dl>
   `;
 
-  resultsContainer.innerHTML += `
-  <dl>
-    <dd class="results-email">${calculateCosts.userEmail}</dd>
-
-    <dd class="results-cost">£${calculateCosts.totalCost.toFixed(
-      2
-    )}<span>per week</span></dd>
-    <dd class="results-tutoring">£${calculateCosts.userTutoring.toFixed(
-      2
-    )}<span>per week</span></dd>
-    <dd class="results-competition-fee">£${calculateCosts.userCompetitionFee.toFixed(
-      2
-    )}<span>per week</span></dd>
-
-    <div class="results-details">
-      <div>
-        <dt>Level</dt>
-        <dd class="results-detail">${calculateCosts.userLevel}</dd>
-      </div>
-      <div>
-        <dt>Hours</dt>
-        <dd class="results-detail">${calculateCosts.userHours}</dd>
-      </div>
+  out.innerHTML = `
+    <h2>Results</h2>
+    <div class="results-summary">
+      <p><strong>Name:</strong> ${output.userName || "—"}</p>
+      <p><strong>Level:</strong> ${output.userLevel || "—"}</p>
+      <p><strong>Hours:</strong> ${output.userHours ?? "—"}</p>
+      <p><strong>Total cost:</strong> £${Number(output.totalCost).toFixed(
+        2
+      )}</p>
+      <p><strong>Tutoring:</strong> £${Number(output.tutoringCost).toFixed(
+        2
+      )}</p>
+      <p><strong>Competition fee:</strong> £${Number(
+        output.competitionFee
+      ).toFixed(2)}</p>
     </div>
-  </dl>
-`;
+  `;
 }

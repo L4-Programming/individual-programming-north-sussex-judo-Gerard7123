@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>North Sussex Judo</title>
   </head>
+  <div id="results" class="form-section"></div>
 
   <body>
     <h1>North Sussex Judo</h1>
@@ -27,7 +28,7 @@
                 id="beginner"
                 type="radio"
                 name="training-plan"
-                level="beginner"
+                value="beginner"
                 required
                 checked
               />
@@ -39,7 +40,7 @@
                 id="intermediate"
                 type="radio"
                 name="training-plan"
-                level="intermediate"
+                value="intermediate"
                 required
               />
               <label for="intermediate">Intermediate - 3 sessions p/wk</label>
@@ -47,21 +48,10 @@
 
             <div class="radio-button-field">
               <input
-                id="advanced"
-                type="radio"
-                name="training-plan"
-                level="advanced"
-                required
-              />
-              <label for="advanced">Advanced - 4 sessions p/wk</label>
-            </div>
-
-            <div class="radio-button-field">
-              <input
                 id="elite"
                 type="radio"
                 name="training-plan"
-                level="elite"
+                value="elite"
                 required
               />
               <label for="elite">Elite - 5 sessions p/wk</label>
@@ -78,14 +68,22 @@
             <label for="competitions-entered">
               Number of Competitions Entered this Month (Optional)
             </label>
-            <input type="number" name="competitions-entered" />
+            <input
+              type="number"
+              name="competitions-entered"
+              id="competitions-entered"
+            />
           </div>
 
           <div>
             <label for="private-coaching-hours">
               Number of Hours of Private Coaching (Optional)
             </label>
-            <input type="number" name="private-coaching-hours" />
+            <input
+              type="number"
+              name="private-coaching-hours"
+              id="private-coaching-hours"
+            />
           </div>
 
           <div>
@@ -96,7 +94,6 @@
 
       <div class="athlete-info">
         <h2>Athlete Information</h2>
-        <hr />
 
         <div class="outputs-wrapper">
           <div id="output" class="output-field">Awaiting Input...</div>
