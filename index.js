@@ -1,19 +1,69 @@
-/* Refer to the README.md for instructions on what you need to do in this project */
-export function calculateCosts(data){
+import { calculateCosts } from "./calculateCosts.js";
+import { validateFormData } from "./validateForms.js";
+import { displayResults } from "./displayResults.js";
 
-console.log ("Calculating costs")
-console.log ({data});
+const form = document.querySelector("form");
 
-const costPerHour ={
-  "Beginner( 2 sessions/week)": 15,
-  "Intermediate( 3 sessions/week)": 30,
-  "Elite( 5 sessions/week)": 35,
-  "private Tuition (1 session/hour)": 9.50, 
-  "Competition fee": 22.00
-}; 
-  let totalCost = 0;
+const maxHoursPerLevel = {
+  beginner: 2,
+  intermediate: 3,
+  advanced: 4,
+  elite: 5,
+};
 
-  if (data.costPerHour) {
-}
-}
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
 
+  const userName = document.querySelector("#athlete-name").value.trim();
+
+  // get the checked radio (returns null if none)
+  const selected = document.querySelector(
+    'input[name="training-plan"]:checked'
+  );
+
+  const userLevel = selected ? selected.value : "";
+  // lookup hours using the normalized keys (beginner/intermediate/advanced/elite)
+  const userHours =
+    Number(document.querySelector("#private-coaching-hours").value) || 0;
+  const userCompetitionsEntered =
+    Number(document.querySelector("#competitions-entered").value) || 0;
+  const userWeight =
+    Number(document.querySelector("#current-weight").value) || 0;
+
+  const validationErrors = validateFormData({
+    userName,
+    userLevel,
+    userCompetitionsEntered,
+    userWeight,
+    userHours,
+  });
+
+  if (validationErrors.length > 0) {
+    alert(validationErrors.join("\n"));
+
+    return;
+  }
+
+  if (validationErrors.length === 0) {
+    const data = {
+      userName,
+      userLevel,
+      userHours,
+      userCompetitionHours,
+    };
+
+    const costs = calculateCosts(data);
+    displayResults(costs);
+  } else {
+    console.log("Validation errors:", validationErrors);
+  }
+
+  // helpful debug info in the console
+  console.log({
+    userName,
+    userLevel,
+    userHours,
+    userCompetitionHours,
+    validationErrors,
+  });
+});

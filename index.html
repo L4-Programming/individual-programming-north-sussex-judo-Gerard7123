@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>North Sussex Judo</title>
   </head>
+  <div id="results" class="form-section"></div>
 
   <body>
     <h1>North Sussex Judo</h1>
@@ -21,8 +22,10 @@
 
           <div class="training-plan-wrapper" role="radiogroup">
             <label>Training Plan</label>
+
             <div class="radio-button-field">
               <input
+                id="beginner"
                 type="radio"
                 name="training-plan"
                 value="beginner"
@@ -34,6 +37,7 @@
 
             <div class="radio-button-field">
               <input
+                id="intermediate"
                 type="radio"
                 name="training-plan"
                 value="intermediate"
@@ -43,29 +47,43 @@
             </div>
 
             <div class="radio-button-field">
-              <input type="radio" name="training-plan" value="elite" required />
+              <input
+                id="elite"
+                type="radio"
+                name="training-plan"
+                value="elite"
+                required
+              />
               <label for="elite">Elite - 5 sessions p/wk</label>
             </div>
           </div>
-          <script type="text/javascript" src="index.js"></script>
 
           <div>
             <label for="current-weight">Current Weight (kg)</label>
             <input type="number" id="current-weight" name="current-weight" />
+            <displayed-unit>kg</displayed-unit>
           </div>
 
           <div>
-            <label for="competitions-entered"
-              >Number of Competitions Entered this Month (Optional)</label
-            >
-            <input type="number" name="competitions-entered" />
+            <label for="competitions-entered">
+              Number of Competitions Entered this Month (Optional)
+            </label>
+            <input
+              type="number"
+              name="competitions-entered"
+              id="competitions-entered"
+            />
           </div>
 
           <div>
-            <label for="private-coaching-hours"
-              >Number of Hours of Private Coaching (Optional)</label
-            >
-            <input type="number" name="private-coaching-hours" />
+            <label for="private-coaching-hours">
+              Number of Hours of Private Coaching (Optional)
+            </label>
+            <input
+              type="number"
+              name="private-coaching-hours"
+              id="private-coaching-hours"
+            />
           </div>
 
           <div>
@@ -76,12 +94,13 @@
 
       <div class="athlete-info">
         <h2>Athlete Information</h2>
-        <hr />
 
         <div class="outputs-wrapper">
           <div id="output" class="output-field">Awaiting Input...</div>
         </div>
       </div>
     </div>
+
+    <script type="module" src="index.js"></script>
   </body>
 </html>
