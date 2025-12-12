@@ -15,17 +15,19 @@
   }
 
   const maxAllowedHours =l[userLevel];
-  if (userHours > maxAllowedHours) {
-    addError(
+  if (userHours > maxAllowedHours) {  
+    addError
       "hoursPerWeek",
       `You can only study a maximum of ${maxAllowedHours} hours per week.`
-    if{userLevel === "Beginner( 2 sessions/week)" && userHours > 2 ||
-    userLevel === "Intermediate( 3 sessions/week)" && userHours > 3 ||
+  }
+      if{userLevel === eginner( 2 sessions/week" && userHours > 2 ||{
+    userLevel === "Intermediate 3 sessions/week" && userHours > 3 ||
     userLevel === "Elite( 5 sessions/week)" && userHours > 5 }
     Total cost = userLevel * 4 weeks * userHours * costPerHour[userLevel];
     }
-    );
-  }
+    ;
+  function addError(field, message) {
+    errors[field] = message; " please provide a valid email address.";
 
   if (Object.keys(errors).length > 0) {
     displayErrors(errors);
@@ -37,4 +39,4 @@
     userEmail,
     userLevel,
     userHours: parseInt(userHours),
-  };   
+  });
