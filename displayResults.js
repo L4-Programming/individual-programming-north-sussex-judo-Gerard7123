@@ -10,7 +10,7 @@ export function displayResults(output) {
       <dt>Training Level:</dt>
       <dd>${output.userLevel || "—"}</dd>
       <dt>Training Hours per Week:</dt>
-      <dd>${output.userHours ?? "—"}</dd>
+      <dd>${output.userCompetitionHours ?? "—"}</dd>
       <dt>Total Cost:</dt>
       <dd>£${Number(output.totalCost).toFixed(2)}</dd>
       <dt>Private Tutoring Cost:</dt>

@@ -1,42 +1,61 @@
+export function validateForm(formData = {}) {
+  const { userEmail = "", userLevel = "", userHours = "" } = formData;
+  const errors = {};
 
-  // Check if the user has provided an email address
-
-  // Check if the user has selected a level
-  if (userLevel === "") {
-    addError("level", "please select your progress level");
-  }
-
-
-
-  if (!maxHoursPerLevel.hasOwnProperty(userLevel)) {
-    addError("level", "Invalid level of study selected.");
-    maxAllowedHours = 0;
-
-  }
-
-  const maxAllowedHours =l[userLevel];
-  if (userHours > maxAllowedHours) {  
-    addError
-      "hoursPerWeek",
-      `You can only study a maximum of ${maxAllowedHours} hours per week.`
-  }
-      if{userLevel === eginner( 2 sessions/week" && userHours > 2 ||{
-    userLevel === "Intermediate 3 sessions/week" && userHours > 3 ||
-    userLevel === "Elite( 5 sessions/week)" && userHours > 5 }
-    Total cost = userLevel * 4 weeks * userHours * costPerHour[userLevel];
-    }
-    ;
   function addError(field, message) {
-    errors[field] = message; " please provide a valid email address.";
+    errors[field] = message;
+  }
+
+  // Email validation
+  const emailTrimmed = String(userEmail).trim();
+  if (!emailTrimmed) {
+    addError("email", "Please provide an email address.");
+  } else if (!emailRegex.test(emailTrimmed)) {
+    addError("email", "Please provide a valid email address.");
+  }
+
+  
+  const maxHoursPerLevel = {
+    "Beginner (2 sessions/week)": 2,
+    "Intermediate (3 sessions/week)": 3,
+    "Elite (5 sessions/week)": 5,
+  };
+
+  if (!userLevel || userLevel === "") {
+    addError("level", "Please select your progress level.");
+  } else if (!maxHoursPerLevel.hasOwnProperty(userLevel)) {
+      addError("level", "Invalid level of study selected.");
+  }
+
+  // Hours validation
+  if (userHours === "" || userHours === null || userHours === undefined) {
+    addError(
+      "hoursPerWeek",
+      "Please specify the number of hours you plan to study each week."
+    );
+  } else if (isNaN(userHours) || Number(userHours) <= 0) {
+    addError("hoursPerWeek", "Please provide a valid number of hours.");
+  } else {
+    const hoursNumber = Number(userHours);
+    const maxAllowed = maxHoursPerLevel[userLevel] ?? 0;
+    if (hoursNumber > maxAllowed) {
+      addError(
+        "hoursPerWeek",
+        `You can only study a maximum of ${maxAllowed} hours per week.`
+      );
+    }
+  }
 
   if (Object.keys(errors).length > 0) {
-    displayErrors(errors);
-
-    return false;
+    return { valid: false, errors };
   }
 
   return {
-    userEmail,
-    userLevel,
-    userHours: parseInt(userHours),
-  });
+    valid: true,
+    data: {
+      userEmail: emailTrimmed,
+      userLevel,
+      userHours: Number(userHours),
+    },
+  };
+}
