@@ -16,18 +16,16 @@ form.addEventListener("submit", function (event) {
 
   const userName = document.querySelector("#athlete-name").value.trim();
 
-  // get the checked radio (returns null if none)
+  
   const selected = document.querySelector(
     'input[name="training-plan"]:checked'
   );
 
   const userLevel = selected ? selected.value : "";
-  // lookup hours using the normalized keys (beginner/intermediate/advanced/elite)
   const userHours =
     Number(document.querySelector("#private-coaching-hours").value) || 0;
   const userTutoringHours =
     Number(document.querySelector("#private-coaching-hours").value) || 0;
-  // Number of competitions entered this month
   const userCompetitionHours =
     Number(document.querySelector("#competitions-entered").value) || 0;
   const userWeight =
@@ -61,8 +59,6 @@ form.addEventListener("submit", function (event) {
   } else {
     console.log("Validation errors:", validationErrors);
   }
-
-  // helpful debug info in the console
   console.log({
     userName,
     userLevel,
