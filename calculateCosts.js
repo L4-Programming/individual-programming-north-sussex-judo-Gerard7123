@@ -1,7 +1,6 @@
-export function calculateCosts(data) {
-  console.log("CalculatingCosts");
-  console.log({ data });
-
+export function calculateCosts(data = {}) {
+  // expected data keys:
+  // { userName, userEmail, userLevel, userHours, userTutoring, userCompetitionFee }
   const costPerLevel = {
     beginner: 25,
     intermediate: 30,
@@ -9,35 +8,27 @@ export function calculateCosts(data) {
   };
 
   const additionalFees = {
-    tuition: 9.5,
-    competition: 22.0,
+    tuitionPerHour: 9.5, // private tutoring per hour
+    competitionPerEntry: 22.0, // per competition entered
   };
 
-  let totalCost = costPerLevel[data.userLevel] * data.userHours;
-  let tutoringCost =
-    costPerLevel["private Tuition:1 session/hour"] * data.userTutoring;
-  let competitionFeeCost =
-    costPerLevel["Competition fee"] * data.userCompetitionFee;
-  totalCost += tutoringCost + competitionFeeCost * 4;
+  const levelKey = data.userLevel || "beginner";
+  const hours = Number(data.userHours) || 0;
+  const tutoringHours = Number(data.userTutoring) || 0;
+  const competitions = Number(data.userCompetitionFee) || 0;
 
-  if (data.costPerHour) {
-  }
+  const baseCost = (costPerLevel[levelKey] ?? 0) * hours;
+  const tutoringCost = additionalFees.tuitionPerHour * tutoringHours;
+  const competitionFee = additionalFees.competitionPerEntry * competitions;
+  const totalCost = baseCost + tutoringCost + competitionFee;
 
-  return; //
   return {
-    totalCost: totalCost,
-    userName: data.userName,
-    userEmail: data.userEmail,
-    userLevel: data.userLevel,
-    userHours: data.userHours,
-    userTutoring: tutoringCost,
-    userCompetitionFee: competitionFeeCost,
-    totalCost:
-      costPerLevel[data.userLevel] * data.userHours +
-      tutoringCost +
-      competitionFeeCost * 4,
+    userName: data.userName || "",
+    userEmail: data.userEmail || "",
+    userLevel: levelKey,
+    userHours: hours,
+    tutoringCost,
+    competitionFee,
+    totalCost,
   };
-
-  console.log(`Total cost: $${totalCost.toFixed(2)}`);
-  return costobject;
 }

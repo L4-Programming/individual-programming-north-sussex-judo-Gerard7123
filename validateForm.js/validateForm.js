@@ -8,23 +8,24 @@ export function validateForm(formData = {}) {
 
   // Email validation
   const emailTrimmed = String(userEmail).trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailTrimmed) {
     addError("email", "Please provide an email address.");
   } else if (!emailRegex.test(emailTrimmed)) {
     addError("email", "Please provide a valid email address.");
   }
 
-  
+  // Levels and max hours (keys match radio values in index.html)
   const maxHoursPerLevel = {
-    "Beginner (2 sessions/week)": 2,
-    "Intermediate (3 sessions/week)": 3,
-    "Elite (5 sessions/week)": 5,
+    beginner: 2,
+    intermediate: 3,
+    elite: 5,
   };
 
   if (!userLevel || userLevel === "") {
     addError("level", "Please select your progress level.");
-  } else if (!maxHoursPerLevel.hasOwnProperty(userLevel)) {
-      addError("level", "Invalid level of study selected.");
+  } else if (!Object.prototype.hasOwnProperty.call(maxHoursPerLevel, userLevel)) {
+    addError("level", "Invalid level of study selected.");
   }
 
   // Hours validation
@@ -33,7 +34,7 @@ export function validateForm(formData = {}) {
       "hoursPerWeek",
       "Please specify the number of hours you plan to study each week."
     );
-  } else if (isNaN(userHours) || Number(userHours) <= 0) {
+  } else if (Number.isNaN(Number(userHours)) || Number(userHours) <= 0) {
     addError("hoursPerWeek", "Please provide a valid number of hours.");
   } else {
     const hoursNumber = Number(userHours);

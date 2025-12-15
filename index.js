@@ -25,7 +25,10 @@ form.addEventListener("submit", function (event) {
   // lookup hours using the normalized keys (beginner/intermediate/advanced/elite)
   const userHours =
     Number(document.querySelector("#private-coaching-hours").value) || 0;
-  const userCompetitionsEntered =
+  const userTutoringHours =
+    Number(document.querySelector("#private-coaching-hours").value) || 0;
+  // Number of competitions entered this month
+  const userCompetitionHours =
     Number(document.querySelector("#competitions-entered").value) || 0;
   const userWeight =
     Number(document.querySelector("#current-weight").value) || 0;
@@ -33,7 +36,7 @@ form.addEventListener("submit", function (event) {
   const validationErrors = validateFormData({
     userName,
     userLevel,
-    userCompetitionsEntered,
+    userCompetitionHours,
     userWeight,
     userHours,
   });
@@ -49,7 +52,8 @@ form.addEventListener("submit", function (event) {
       userName,
       userLevel,
       userHours,
-      userCompetitionHours,
+      userTutoring: userTutoringHours,
+      userCompetitionFee: userCompetitionHours,
     };
 
     const costs = calculateCosts(data);
@@ -63,6 +67,7 @@ form.addEventListener("submit", function (event) {
     userName,
     userLevel,
     userHours,
+    userTutoringHours,
     userCompetitionHours,
     validationErrors,
   });
