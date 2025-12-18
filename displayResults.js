@@ -1,6 +1,14 @@
 export function displayResults(output = {}) {
   console.log({ output });
+<<<<<<< HEAD
   if (!container && !resultsEl) return;
+=======
+
+  const container = document.getElementById("output");
+  const resultsEl = document.getElementById("results");
+  if (!container) return;
+
+>>>>>>> 76471b3b2ee15471e462fe2c8b9c7291d53836f2
   const totalCost = Number(output.totalCost) || 0;
   const tutoringCost = Number(output.tutoringCost) || 0;
   const competitionFee = Number(output.competitionFee) || 0;
