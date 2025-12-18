@@ -3,7 +3,7 @@ export function displayResults(output = {}) {
 
   const container = document.getElementById("output");
   const resultsEl = document.getElementById("results");
-  if (!container && !resultsEl) return;
+  if (!container) return;
 
   const totalCost = Number(output.totalCost) || 0;
   const tutoringCost = Number(output.tutoringCost) || 0;
