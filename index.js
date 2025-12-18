@@ -52,6 +52,7 @@ form.addEventListener("submit", function (event) {
       userHours,
       userTutoring: userTutoringHours,
       userCompetitionFee: userCompetitionHours,
+      userWeight,
     };
 
     const costs = calculateCosts(data);

@@ -1,10 +1,6 @@
 export function displayResults(output = {}) {
   console.log({ output });
-
-  const container = document.getElementById("output");
-  const resultsEl = document.getElementById("results");
   if (!container && !resultsEl) return;
-
   const totalCost = Number(output.totalCost) || 0;
   const tutoringCost = Number(output.tutoringCost) || 0;
   const competitionFee = Number(output.competitionFee) || 0;
@@ -24,9 +20,6 @@ export function displayResults(output = {}) {
 
   if (resultsEl) {
     resultsEl.innerHTML = `
-      <dl>
-        <dt>Email</dt>
-        <dd class="results-email">${output.userEmail || "—"}</dd>
 
         <dt>Total</dt>
         <dd class="results-cost">£${totalCost.toFixed(2)} <span>per week</span></dd>

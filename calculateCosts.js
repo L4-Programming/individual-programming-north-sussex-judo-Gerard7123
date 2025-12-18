@@ -24,7 +24,6 @@ export function calculateCosts(data = {}) {
 
   return {
     userName: data.userName || "",
-    userEmail: data.userEmail || "",
     userLevel: levelKey,
     userHours: hours,
     tutoringCost,
