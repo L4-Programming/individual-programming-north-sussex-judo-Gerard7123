@@ -27,6 +27,7 @@ export function calculateCosts(data = {}) {
     userLevel: levelKey,
     userHours: hours,
     tutoringCost,
+    baseCost,
     competitionFee,
     totalCost,
   };
