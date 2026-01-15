@@ -232,3 +232,6 @@ button:active {
   background-color: var(--sky-600);
   color: var(--sky-50);
 }
+.total-cost {
+  color: red;
+}
